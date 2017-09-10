@@ -27,15 +27,18 @@ public class CubeController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision collision) {
-		Debug.Log ("衝突！");
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.tag == "Cube" || collision.gameObject.name == "ground") {
+			audioSouce = GetComponent<AudioSource> ();
+			audioSouce.PlayOneShot (audioSouce.clip);
+		}
 	}
 
-	void onTriggerEnter2D(Collider other) {
-		if (other.gameObject.tag == "Cube") {
-			audioSouce = gameObject.GetComponent<AudioSource> ();
-			audioSouce.clip = audioClip;
-			audioSouce.Play ();
-		}
+	void OnTriggerEnter2D(Collider2D other) {
+//		if (other.gameObject.tag == "Cube") {
+//			audioSouce = gameObject.GetComponent<AudioSource> ();
+//			audioSouce.clip = audioClip;
+//			audioSouce.Play ();
+//		}
 	}
 }
